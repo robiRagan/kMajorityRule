@@ -6,7 +6,9 @@ This is the repository for the replication code for the paper "An expected utili
 There are three ways that you can review the simulations associated with the paper. The first two assume you have R installed. R is a free software program and you can aquire the basic version at one of these mirrors:
 
 http://cran.stat.ucla.edu
+
 http://cran.case.edu
+
 http://cran.wustl.edu
 
 
