@@ -3,7 +3,7 @@ rm(list = ls(all = TRUE)) # clear the workspace
 readline("Warning replicating this figure takes a very long time. To run an aproximation run `demo(demo8Aapprox)` \nType  <Return>\t to start :")
 
 # Figure 8A
-           aKMajorityRuleSimulation(folderName="Figure8A", 
+eightA <- aKMajorityRuleSimulation(folderName="Figure8A", 
                                    numberOfIterations=1000, 
                                    groupSize=c(50,30,20),
                                    utilityDistribution=c("normal","normal","normal"), 
@@ -25,4 +25,4 @@ readline("Warning replicating this figure takes a very long time. To run an apro
                                    plotNumberOfRounds=FALSE,
                                    plotPareto=FALSE,
                                    printOutputToScreen=TRUE)
-
+rm(eightA)

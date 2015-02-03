@@ -1,7 +1,7 @@
 rm(list = ls(all = TRUE)) # clear the workspace
 
 # Demo for Figure 4A
-  aKMajorityRuleSimulation(folderName="Figure4A", 
+fourA <- aKMajorityRuleSimulation(folderName="Figure4A", 
                                        numberOfIterations=1000, 
                                        groupSize=c(35,30,35),
                                        utilityDistribution=c("normal","normal","normal"), 
@@ -23,3 +23,4 @@ rm(list = ls(all = TRUE)) # clear the workspace
                                        plotNumberOfRounds=FALSE,
                                        plotPareto=FALSE,
                                        printOutputToScreen=TRUE)
+rm(fourA)

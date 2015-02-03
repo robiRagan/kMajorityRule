@@ -4,6 +4,7 @@
 #' @template param_genGroupLevelDataframe
 #' @template param_iterations
 #' @return A list of objects expectedUtility, expectedCosts, rounds, allGroups, allVoters, allYeas, allPassesForWhich, theInputParameters.
+#'  @export
 
 iterations <- function( numberOfIterations,          
                         groupSize,                 

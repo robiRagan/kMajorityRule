@@ -23,3 +23,4 @@ sixB <- aKMajorityRuleSimulation(folderName="Figure6B",
                                  plotNumberOfRounds=FALSE,
                                  plotPareto=FALSE,
                                  printOutputToScreen=TRUE)
+rm(sixB)

@@ -2,21 +2,19 @@
 % Please edit documentation in R/updateVoterLevelDataFrame.R
 \name{updateVoterLevelDataFrame}
 \alias{updateVoterLevelDataFrame}
-\title{updateVoterLevelDataFrame
-Takes an existing voter level data frame and a group level data frame that has had it's parameters changed and outputs a new voter level data frame.}
+\title{updateVoterLevelDataFrame}
 \usage{
 updateVoterLevelDataFrame(oneIterationsVoters, oneIterationsGroups)
 }
 \arguments{
-\item{oneIterationsVoters:}{The existing voter level data frame that will be updated.}
+\item{oneIterationsVoters}{The existing voter level data frame that will be updated.}
 
-\item{oneIterarionsGroups:}{The updated group level data frame that provides the values used to update the voter level data frame.}
+\item{oneIterationsGroups}{The updated group level data frame that provides the values used to update the voter level data frame.}
 }
 \value{
-oneIterationsVoters: The updated voter level data frame.
+oneIterationsVoters The updated voter level data frame.
 }
 \description{
-updateVoterLevelDataFrame
 Takes an existing voter level data frame and a group level data frame that has had it's parameters changed and outputs a new voter level data frame.
 }
 

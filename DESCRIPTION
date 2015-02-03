@@ -1,9 +1,20 @@
 Package: kMajorityRule
 Type: Package
+ByteCompile: TRUE
 Title: A series of tools for exploring different k-majority rule scenarios.
 Version: 1.0
 Date: 2015-01-26
 Author: Anonymous Review
 Maintainer: Anonymous Review <anonymous@underreview.com>
-Description: In a classic work, Buchanan and Tullok (1962) argued that the optimal k-majority rule minimizes the sum of external costs and decision costs. We analyze the optimal k-majority rule in terms of expected utility and compare our results to other recent developments in this literature. More specifically, we replace Buchanan and Tullock's external cost function with expected utility function then determine which k-majority rule maximizes the difference between an individual's expected utility from passing a policy and their decision costs.
-License: What license is it under?
+Description: In a classic work, Buchanan and Tullok (1962) argued that 
+    the optimal k-majority rule minimizes the sum of external costs and 
+    decision costs. We analyze the optimal k-majority rule in terms of 
+    expected utility and compare our results to other recent developments 
+    in this literature. More specifically, we replace Buchanan and Tullock's 
+    external cost function with expected utility function then determine 
+    which k-majority rule maximizes the difference between an individual's 
+    expected utility from passing a policy and their decision costs.
+Depends: R (>= 3.1.0)
+License: GPL-3
+Imports:
+    shiny

@@ -12,7 +12,7 @@
 #'   C:/Documents and Settings/username/My Documents/x/y/z"
 #' @param writeCSV TRUE writes out all of the input and output as CSV files for
 #'   later use or inspection.
-#' @param writeR TRUE writes out all the input and output as R objects using
+#' @param writeRObjects TRUE writes out all the input and output as R objects using
 #'   dput() for later use or inspection. See ?dput.
 #'@param plotExternalCostTotalCosts If TRUE creates two graphs. One has the
 #'   decision cost, external cost and total cost for the worst groups. The other
@@ -33,14 +33,12 @@
 #'   Proposal.
 #' @param printOutputToScreen If set to TRUE prints a summary of the simulation output to
 #'   the screen after the simulation is finished.
-#' @return Stores all model input, output and graphs in provided working
+#' @return Will stores all model input, output and graphs in provided working
 #'   directory. The user can control which elemets to store and plot with the
-#'   function parameters writeCSV, writeRObjects, plotEC, plotDC, plotTC,
-#'   plotNumberOfRounds and plotPareto. Use the printOutputToScreen option to 
-#'   see summary output after the model runs.
+#'   the write_____ and plot______ fundtion parameters detailed above. 
+#'   Use the printOutputToScreen=TRUE option to see summary output after the model runs.
 #' @examples
 #'                          aKMajorityRuleSimulation(folderName="SimulationA",
-#'                                                  externalCostOrExpectedUtility="expectedUtility",
 #'                                                  numberOfIterations=100,
 #'                                                  groupSize=c(35,30,35),
 #'                                                  utilityDistribution=c("normal","normal","normal"),
@@ -55,18 +53,17 @@
 #'                                                  silentIterations=FALSE,
 #'                                                  writeCSV=FALSE,
 #'                                                  writeRObjects=FALSE,
-#'                                                  plotExternalCostTotalCosts=FALSE
+#'                                                  plotExternalCostTotalCosts=FALSE,
 #'                                                  plotExpectedUtilityTotalCosts=FALSE,
 #'                                                  plotOnlyExternalCost=FALSE,
 #'                                                  plotOnlyExpectedUtility=FALSE,
 #'                                                  plotNumberOfRounds=FALSE,
 #'                                                  plotPareto=TRUE,
 #'                                                  printOutputToScreen=TRUE) 
-
+#' @export
 
 
 aKMajorityRuleSimulation <-       function(folderName,
-                                           externalCostOrExpectedUtility,
                                            numberOfIterations,
                                            groupSize,
                                            utilityDistribution,
@@ -98,10 +95,11 @@ aKMajorityRuleSimulation <-       function(folderName,
   
   
   # STEP 2: Create output directory:
+  if( writeCSV | writeRObjects| plotExternalCostTotalCosts==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
   sysTimeStamp <- format(Sys.time(),"on_%m_%d_%Y_at_%H_%M_%S")
   dir.create(paste("output_",folderName,"_",sysTimeStamp, sep=""), showWarnings=FALSE)
   cat("The simulation output  will be stored in \n  ",outputTo, paste("/output_",folderName,"_",sysTimeStamp,"\n\n", sep=""), sep = "")
-  
+  }
   
   # STEP 3: Plots
 ## Add other plots to or statement  
@@ -274,10 +272,7 @@ aKMajorityRuleSimulation <-       function(folderName,
   } #ends if(plotPareto==TRUE)
   
   
-  
-  ####################################
-  #  HERE
-  ####################################
+
   
   
   if (writeRObjects==TRUE){
@@ -344,6 +339,10 @@ aKMajorityRuleSimulation <-       function(folderName,
     cat("SAVED 'meanOfworstOffGroupsMeanExternalCostEachIteration.csv', which records the utility of the min voter for a given kMajority in each iteration. \n  It has been saved in the 'csv' folder. It can be read into R with read.csv. \n  See ?read.csv. \n\n", sep = "")
   } # ends if(writeCSV==TRUE)
   
+
+
+## Only write out the info if something else was stored or plotted
+if( writeCSV | writeRObjects| plotExternalCostTotalCosts==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
   sink(paste("output_",folderName,"_",sysTimeStamp,"/",nrow(iterationsOutput$allGroups[[1]]),"G_",iterationsOutput$theInputParameters$utilityDistribution[1],"Util_",iterationsOutput$theInputParameters$errorDistribution[1],"Error_Info.txt",sep=""))
   cat("This file is: ",nrow(iterationsOutput$allGroups[[1]]),"G_",iterationsOutput$theInputParameters$utilityDistribution[1],"Util_",iterationsOutput$theInputParameters$errorDistribution[1],"Error_Info.txt\n\n",sep="")
   cat("This file contains basic information about the simulation files contained in this folder.\n\n")
@@ -363,9 +362,10 @@ aKMajorityRuleSimulation <-       function(folderName,
     cat("Group ",i,": ", as.vector(iterationsOutput$allGroups[[1]]$groupPostFailingProposalMeanUiIncrease[i]),"\n",sep="")
   }
   
+}
   
   ## The following output is only needed for multiple round cases
-  if (iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries > 1){
+  if (iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries > 1 | iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries==FALSE){
     cat("Per-Round Decision Cost: ",iterationsOutput$theInputParameters$perProposalDecisionCost,"\n\n")
     cat("Min Rounds of Voting by kMaj: ",iterationsOutput$rounds$minRoundProposalPassedEachIteration,"\n\n")
     cat("Mean Rounds of Voting by kMaj: ",iterationsOutput$rounds$meanRoundProposalPassedEachIteration,"\n\n")
@@ -423,7 +423,7 @@ sink()
     
     
     ## The following output is only needed for multiple round cases
-    if (iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries > 1){
+    if (iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries > 1 | iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries==FALSE){
       cat("Per-Round Decision Cost: ",iterationsOutput$theInputParameters$perProposalDecisionCost,"\n\n")
       cat("Min Rounds of Voting by kMaj: ",iterationsOutput$rounds$minRoundProposalPassedEachIteration,"\n\n")
       cat("Mean Rounds of Voting by kMaj: ",iterationsOutput$rounds$meanRoundProposalPassedEachIteration,"\n\n")

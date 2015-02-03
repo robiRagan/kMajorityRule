@@ -1,10 +1,11 @@
-#' genGroupLevelDataframe
+#' genGroupLevelDataFrame
 #' 
 #' Creates a data.frame to hold the group level data for the simulation.
 #' 
 #' @template param_genGroupLevelDataframe
 #' 
-#' @return groupsDataFrame: A dataframe with G rows, containing the following columns: groupID, utilityDistribution, utilityDistributionParam1, utilityDistributionParam2, errorDistribution, errorDistributionParam1, errorDistributionParam2, groupPostFailingProposalMeanUiIncrease. 
+#' @return groupsDataFrame A dataframe with G rows, containing the following columns: groupID, utilityDistribution, utilityDistributionParam1, utilityDistributionParam2, errorDistribution, errorDistributionParam1, errorDistributionParam2, groupPostFailingProposalMeanUiIncrease. 
+#'  @export
 
 genGroupLevelDataFrame <- function(groupSize,utilityDistribution,utilityDistributionParameters,errorDistribution,errorDistributionParameters,groupPostFailingProposalMeanUiIncrease){
   numberOfGroups <- length(groupSize) 

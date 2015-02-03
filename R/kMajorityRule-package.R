@@ -1,101 +1,47 @@
 #' kMajorityRule: A package for simulating and investigating various kMajority Rule scenarios.
 #'
-#' The kMajorityRule package provides three categories of important functions:
-#' foo, bar and baz.
-#' 
-#' @section Foo functions:
-#' The foo functions ...
-#' \enumerate{
-#' \item The per round decision costs, \eqn{c}, is assigned (sometimes a constant).
-#' \item Let \eqn{g} label a given group. The group level parameters are assigned, including the size \eqn{g}, the mean and standard deviation of the utility distribution  (\eqn{N(\mu_g,\sigma_g)}), the mean and standard deviation of the error distribution  (\eqn{N(m_g,s_g)}), and the change in each group's mean utility (\eqn{\alpha_{g,r}}).
-#' \item A \emph{series of proposals}, indexed by $r$, is run according to a ``successive procedure.'' For each round \eqn{r}:
-#'    
-#'      \enumerate{
-#'      \item Voter utilities and errors are generated based on their group level parameters:
-#'           
-#'            \itemize{
-#'            \item \eqn{u_{i,r}} for each \eqn{i \in g}, representing utility from passage of the proposal in round \eqn{r};
-#'            \item \eqn{e_{i,r}} for each \eqn{i \in g}, representing error in judgement in round \eqn{r}.
-#'            }
-#'      
-#'      \item Perceived utility, \eqn{u_{i,r}+e_{i,r}}, is calculated and stored for each voter.
-#'      \item Voting occurs based on each voter's perceived utility:
-#'                  \deqn{ p_{i,r} = \left\{ \begin{array}{rl}
-#'                   0 &\mbox{ if }  u_{i,r} +  e_{i,r} \leq 0 \\
-#'                   1 & u_{i,r} + e_{i,r} > 0.
-#'                   \end{array} \right.
-#'                  }
-#'      \item The number of \emph{yea} votes are tallied: \eqn{yeas_r=\displaystyle\sum_i p_{i,r}}.
-#'      \item For each  k-majority rule in round \eqn{r}, whether or not the proposal passes is calculated and stored:
-#'                     \deqn{
-#'                     passes_{k,r} = \left\{ \begin{array}{rl}
-#'                                           1 &\mbox{ if }  yeas_r \geq k \\
-#'                                           0 & \mbox{ if } \text{otherwise}.
-#'                                           \end{array} \right.\text{for }k=\{1,...,N\}
-#'                                           }
-#'        \item The potential external cost, \eqn{E_{i,r}}, is calculated for each voter. These costs are ``potential'' external cost, because an external cost is only incurred if a proposal passes. Although we keep track of potential external costs each round, we only report external costs for a k-majority rule in the round that a proposal passes (or the program stops due to a pre-specified number of rounds).:
-#'                    \deqn{
-#'                      E_{i,r} = \left \{ \begin{array}{rl}
-#'                                0 &\mbox{ if }  u_{i,r} > 0 \\
-#'                        |u_{i,r}| &\mbox{ if }  u_{i,r} \leq 0.
-#'                                \end{array} \right.
-#'                       }
-#'        \item If all k-majority rules have passed a proposal, or the maximum allowed number of rounds have been reached, then no more proposals are considered and the series of proposals ends.
-#'                                                              If not:
-#'                                                              \enumerate{
-#'                                                              \item \eqn{\alpha_{g,r}} is added to \eqn{\mu_{g,r}} for all sub-groups.
-#'                                                              \item The program advances to the next round.
-#'                                                              }
-#'   }
-#'\item When the series of proposals ends for all k-majority rules, the following values are calculated.
-#'            \itemize{
-#'            \item \eqn{R_k}, which is the round each k-majority passed a proposal. This is the lowest \eqn{r}, where \eqn{passes_{k,r}=1}, for a given k-majority rule. If no proposal passed in any round, then the final round is used.
-#'            \item The decision costs for each k-majority rule:
-#'                \deqn{
-#'                \begin{array}{lcl}
-#'                D_k&=&c \cdot R_k. \\
-#'                \end{array}
-#'                }
-#'             \item The external costs for each k-majority rule. Technically, we keep track of the $\eqn{E_{typical, k}}, \eqn{E_{worst, k}}, and \eqn{E_{best, k}} each round and update their values based on whether a proposal passed that round.  We keep this process going for all k-majority rules across all rounds, then reference the results from round $R_k$ for each $k$ separately.  This made writing the code easier.
-#'                                                             \deqn{
-#'                                                                \begin{array}{lcl}
-#'                                                              E_{typical,k} &=& mean_i(E_{i,R_k})\\
-#'                                                              E_{worst,k}   &=& max_g(mean_i(E_{i,R_k,g}))\\
-#'                                                              E_{best,k}    &=& min_g(mean_i(E_{i,R_k,g})).\\
-#'                                                              \end{array}
-#'                                                              }
-#'            \item The Total costs for each k-majority rule:
-#'                                                              \deqn{
-#'                                                                \begin{array}{lcl}
-#'                                                              T_{typical,k} &=& E_{typical,k} + D_k\\
-#'                                                              T_{worst,k}   &=& E_{worst,k} + D_k\\
-#'                                                              T_{best,k}   &=& E_{best,k} + D_k.\\
-#'                                                              \end{array}
-#'                                                              }
-#'            }
-#' \item This ends one \emph{iteration} of the model.  We report the decision costs, external costs, and total costs averaged across the \eqn{J} iterations.
+#' The kMajorityRule package enables the simulation of various kMajority Rule scenarios. 
+#' It allows for the examination of the code use in "An Expected Utility Analysis of the Optimal k-majority rule"
 #'
+#'
+#' @section Functions:
+#' 
+#' The major fucntions in the package are:
+#' \itemize{
+#' \item \code{\link{aKMajorityRuleSimulation}}: Runs a series of proposals for J iterations, for all possible k-majority rules.
+#' \item \code{\link{iterations}}: Runs numberOfIterations of seriesOfProposals() with the same set of initial parameters. Stores all of the input parameters, generated values and output for further analysis.
+#' \item \code{\link{updateVoterLevelDataFrame}}: Takes an existing voter level data frame and a group level data frame that has had it's parameters changed and outputs a new voter level data frame.
+#' \item \code{\link{seriesOfProposals}}: Runs a series of votes/multiple alternatives following a follows a "successive" voting procedure. Stores all of the input parameters, generated values and output for further analysis.
+#' \item \code{\link{genVoterLevelDataFrame}}: Takes the information from a group level data frame generated by genGroupLevelDataframe(), and draws ui and ei for the groups of voters based on it.
+#' \item \code{\link{genGroupLevelDataFrame}}: Creates a data.frame to hold the group level data for the simulation.
+#' \item \code{\link{drawNormalValues}}: Draws ui or ei values from N(groupMean, groupStandardDeviation).
+#' \item \code{\link{plotExpectedUtilityTotalCost}}: Plots the Total Cost, Decision Cost and Expected Utility measures for the voters of interest, in the round the proposal passed, for each of the kMajority rules.
+#' \item \code{\link{plotNumberOfRounds}}: Plots the mean number of rounds it took for the status quo to be defeated for each k-majority rule, across all the iterations.
+#' \item \code{\link{plotOnlyExpectedUtility}}: Plots the expected utility measures for the voters of interest, in the round the proposal passed, for each of the kMajority rules.
+#' \item \code{\link{plotPareto}}: Plot the number of rounds (y-axis) where a Pareto preferred proposal failed by k-majority (x-axis).
 #' }
-#'                                                                                                                      
-#' @section Replication Demos:
-#' In this package we provide a set of demos that replicate the results in the paper, as well as a few other simulations that may be of interest. To view the list of available demos type this at the R prompt:
-#' 
-#' \code{demo(package="kMajorityCosts")}
-#' 
-#' This will return a list of demo names as well as short description of the demo. For example:
-#' 
-#' \code{threePplTwoAlts} Demo of the simulation for three people and two alternatives.
-#' 
-#' You can run the demos interactively by using \code{demo(demoName)}, like this:
-#' 
-#' \code{demo(threePplTwoAltsDemo)}
+#'Each function has detailed documentation that can be accessed using \code{?functionName}. For example \code{?iterations} with show the documentation for the \code{iterations()} function.
 #'
-#' The \code{fullSimulation()} function will allow you to run any version of the simulation you would like. You can view a demo of how it works by typing \code{demo(fullSimulationsDemo)}
-#' 
-#' #' @references Removed for Review
-#' 
-#'
-#'
+#'  @section Demos:
+#'  
+#'  Each of the Figures can be replicated by calling its coresponding \code{demo()} at the console prompt.
+#'  
+#'  \itemize{
+#'  \item \code{demo(demoFigure4A)}
+#'  \item \code{demo(demoFigure4B)}
+#'  \item \code{demo(demoFigure4C)}
+#'  \item \code{demo(demoFigure4D)}
+#'  \item \code{demo(demoFigure6A)}
+#'  \item \code{demo(demoFigure6B)}
+#'  \item \code{demo(demoFigure7A)}
+#'  \item \code{demo(demoFigure7B)}
+#'  \item \code{demo(demoFigure8A)}
+#'  \item \code{demo(demoFigure8B)}
+#'  }
+#'  
+#'  @section Psuedocode:
+#'  The appendix to the paper contais extensive psuedo code that explains the basic logic of the code. 
+#'  
 #' @docType package
 #' @name kMajorityRule
 NULL
