@@ -1,4 +1,5 @@
 library(shiny)
+library(kMajorityRule)
 
 shinyServer(function(input, output) {
   
