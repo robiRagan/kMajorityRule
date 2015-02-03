@@ -11,9 +11,10 @@ http://cran.wustl.edu
 
 
 1. Download the source code.
-    On the page https://github.com/codeForReviewer/kMajorityRule in the bottom corner you will see a button called "Download Zip" this will allow you to download the source code for the R Package. 
 
-    Once you have downloaded and unzipped the file you will find an R file called evaluateViaSource.R. This is a heavily commented file that will allow you to run the commands line by line necessary to replicate the figures in the paper.
+On the page https://github.com/codeForReviewer/kMajorityRule in the bottom corner you will see a button called "Download Zip" this will allow you to download the source code for the R Package. 
+
+Once you have downloaded and unzipped the file you will find an R file called evaluateViaSource.R. This is a heavily commented file that will allow you to run the commands line by line necessary to replicate the figures in the paper.
 
 2. Install the R Package (Recomended)
     This is the simplest way to review the code and replicate the figures in the paper. Because this R Package is not an offical package reviewed by the offical R organization (CRAN) you need to install a package to R before you can install this package.
