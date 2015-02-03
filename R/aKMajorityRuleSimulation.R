@@ -362,7 +362,7 @@ if( writeCSV | writeRObjects| plotExternalCostTotalCosts==TRUE | plotExpectedUti
     cat("Group ",i,": ", as.vector(iterationsOutput$allGroups[[1]]$groupPostFailingProposalMeanUiIncrease[i]),"\n",sep="")
   }
   
-}
+
   
   ## The following output is only needed for multiple round cases
   if (iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries > 1 | iterationsOutput$theInputParameters$maximumNumberOfProposalsInASeries==FALSE){
@@ -399,7 +399,7 @@ sink()
   
   cat("The simulation output was be stored in \n  ",outputTo, paste("/output_",folderName,"_",sysTimeStamp,"\n\n**END SIMULATION**\n", sep=""), sep = "")
   
-  
+} # ends the if statement for sinking to a file  
   
   
   ### This prints the output to the screen if printToScreen==TRUE
