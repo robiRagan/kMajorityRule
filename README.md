@@ -26,4 +26,7 @@ This is the simplest way to review the code and replicate the figures in the pap
 * Now you can install the kMajorityCost package with: install.github("kMajorityRule")
 
 ## 3. View the Web Based GUI
- [TO DO]
+
+A web based interface for running the simulations from the paper (and others). It can be quite slow, compared to running the simulations with the R Package on your own computer.
+
+https://codeforreviewer.shinyapps.io/kMajorityGUI/
