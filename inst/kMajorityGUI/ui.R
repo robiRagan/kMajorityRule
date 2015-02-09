@@ -4,7 +4,17 @@ shinyUI(fluidPage(
   
   titlePanel("kMajority Rule Simulation"),
   
-
+  fluidRow(
+    column(10,
+           p("This is the GUI interface for replicating the simulations in the paper",
+             em("An expected utility analysis of the optimal k-majority rule"),
+          "is a new package from RStudio that makes it to build interactive web applications with R."),
+          h3("Replication Code:"),
+           p("You can view and download the source code, as well as find instructions for installing the R package developed for the paper here:",
+             a("GitHub for kMajorityRule.", 
+               href = "https://github.com/codeForReviewer/kMajorityRule"))
+           )
+  ),
     
   fluidRow( 
     column(3,
@@ -19,7 +29,7 @@ shinyUI(fluidPage(
                     selected = "normal"),
              numericInput("group1UiMean", "Utility Mean", -.3),
              numericInput("group1UiStd", "Utility Std. Dev.", .2),
-             selectInput("group1EiDist", label = "Utility Distribution", 
+             selectInput("group1EiDist", label = "Error Distribution", 
                     choices = list("Normal" = "normal"), 
                     selected = "normal"),
              numericInput("group1EiMean", "Error Mean", 0),
@@ -39,7 +49,7 @@ shinyUI(fluidPage(
                     selected = "normal"),
              numericInput("group2UiMean", "Utility Mean", 0),
              numericInput("group2UiStd", "Utility Std. Dev.", .2),
-             selectInput("group2EiDist", label = "Utility Distribution", 
+             selectInput("group2EiDist", label = "Error Distribution", 
                     choices = list("Normal" = "normal"), 
                     selected = "normal"),
              numericInput("group2EiMean", "Error Mean", 0),
@@ -60,7 +70,7 @@ shinyUI(fluidPage(
                     selected = "normal"),
              numericInput("group3UiMean", "Utility Mean", .3),
              numericInput("group3UiStd", "Utility Std. Dev.", .2),
-            selectInput("group3EiDist", label = "Utility Distribution", 
+            selectInput("group3EiDist", label = "Error Distribution", 
                     choices = list("Normal" = "normal"), 
                     selected = "normal"),
              numericInput("group3EiMean", "Error Mean", 0),
@@ -90,18 +100,26 @@ shinyUI(fluidPage(
            
     column(7,
            plotOutput('plotBest')
-    ), #ends column 9
+    ), #ends column 7
     
     column(7,
            plotOutput('plotMean')
-    ), #ends column 9
+    ), #ends column 7
     
     column(7,
            plotOutput('plotWorst')
-    ) #ends column 9
+    ) #ends column 7
+  ) # Ends FLuid Row
     
-    ) # Ends FLuid Row
     
+
+    
+    
+
+
+  
+  
+  
   ) #Ends Fluid Page
   
 ) #ends Shiny ui

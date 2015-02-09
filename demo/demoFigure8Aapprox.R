@@ -1,8 +1,8 @@
 rm(list = ls(all = TRUE)) # clear the workspace
 
 # Figure 8A approximation
-eightAapprox <- aKMajorityRuleSimulation(folderName="Figure8A", 
-                                   numberOfIterations=500, 
+eightAapprox <- aKMajorityRuleSimulation(folderName="Figure8Approx", 
+                                   numberOfIterations=100, 
                                    groupSize=c(50,30,20),
                                    utilityDistribution=c("normal","normal","normal"), 
                                    utilityDistributionParameters=c(-.5,.2,0,.2,.1,.2), 
