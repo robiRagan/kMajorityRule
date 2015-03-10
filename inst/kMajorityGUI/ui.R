@@ -13,7 +13,7 @@ shinyUI(fluidPage(
              a("GitHub for kMajorityRule.", 
                href = "https://github.com/codeForReviewer/kMajorityRule")),
           h4("A Note on the Number of Groups:"),
-          p("This GUI allows a user to run simulations with 1,2 or 3 groups. The kMajorityRule R Package allows a user to run simulations with more than 3 groups.")
+          p("This GUI allows a user to run simulations with 1, 2 or 3 groups. The", a("kMajorityRule R Package", href = "https://github.com/codeForReviewer/kMajorityRule"), "allows a user to run simulations with more than 3 groups.")
            )
   ),
     

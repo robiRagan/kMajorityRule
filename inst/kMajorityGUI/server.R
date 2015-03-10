@@ -91,7 +91,7 @@ withProgress(
                           writeCSV=FALSE,
                           writeRObjects=FALSE,
                           plotExternalCostTotalCosts=FALSE,
-                          plotExpectedUtilityTotalCosts=FALSE,
+                          plotExpectedUtilityDecCostTotalUtil=FALSE,
                           plotOnlyExternalCost=FALSE,
                           plotOnlyExpectedUtility=FALSE,
                           plotNumberOfRounds=FALSE,
@@ -104,15 +104,15 @@ withProgress(
 }) #end reactive  
 
   output$plotBest <- renderPlot({if(input$runSim== 0) return(NULL)
-  plotExpectedUtilityTotalCost(outputDataList = simOutput(), plotMeanEU = FALSE, plotBestEU = TRUE, plotWorstEU = FALSE)
+  plotExpectedUtilityDecCostTotalUtil(outputDataList = simOutput(), plotMeanEU = FALSE, plotBestEU = TRUE, plotWorstEU = FALSE)
                                 })
 
   output$plotMean <- renderPlot({if(input$runSim== 0) return(NULL)
-  plotExpectedUtilityTotalCost(outputDataList = simOutput(), plotMeanEU = TRUE, plotBestEU = FALSE, plotWorstEU = FALSE)
+  plotExpectedUtilityDecCostTotalUtil(outputDataList = simOutput(), plotMeanEU = TRUE, plotBestEU = FALSE, plotWorstEU = FALSE)
                               })
   
   output$plotWorst <- renderPlot({if(input$runSim== 0) return(NULL)
-  plotExpectedUtilityTotalCost(outputDataList = simOutput(), plotMeanEU = FALSE, plotBestEU = FALSE, plotWorstEU = TRUE)
+  plotExpectedUtilityDecCostTotalUtil(outputDataList = simOutput(), plotMeanEU = FALSE, plotBestEU = FALSE, plotWorstEU = TRUE)
                                 })
 
 
