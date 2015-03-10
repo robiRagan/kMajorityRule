@@ -13,7 +13,8 @@ iterations(numberOfIterations, groupSize, utilityDistribution,
 \item{numberOfIterations}{The number of iterations the model is run.}
 
 \item{groupSize}{This is a vector that has a length of numberOfGroups. Each
-element indicates the number of voters in each group.}
+element indicates the number of voters in each group. While the examples in
+the paper use 3 groups, the package can handle any number of groups.}
 
 \item{utilityDistribution}{The distribution the utility ui values will be
 drawn from. This can currently only be "normal".}

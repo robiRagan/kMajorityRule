@@ -18,8 +18,8 @@
 #'   decision cost, external cost and total cost for the worst groups. The other
 #'   plots the same three costs, but for the mean groups. This is the main
 #'   output presented in the paper.
-#' @param plotExpectedUtilityTotalCosts If TRUE creates two graphs. One has the
-#'   decision cost, expected utility and total cost for the worst groups. The other
+#' @param plotExpectedUtilityDecCostTotalUtil If TRUE creates two graphs. One has the
+#'   decision cost, Expected Utility, Decision Costs and Total Utility for the worst groups. The other
 #'   plots the same three measures, but for the mean groups. This is the main
 #'   output presented in the paper.
 #' @param plotOnlyExternalCost If set to TRUE plots the external cost for the worst, mean
@@ -54,7 +54,7 @@
 #'                                                  writeCSV=FALSE,
 #'                                                  writeRObjects=FALSE,
 #'                                                  plotExternalCostTotalCosts=FALSE,
-#'                                                  plotExpectedUtilityTotalCosts=FALSE,
+#'                                                  plotExpectedUtilityDecCostTotalUtil=FALSE,
 #'                                                  plotOnlyExternalCost=FALSE,
 #'                                                  plotOnlyExpectedUtility=FALSE,
 #'                                                  plotNumberOfRounds=FALSE,
@@ -79,7 +79,7 @@ aKMajorityRuleSimulation <-       function(folderName,
                                            writeCSV,
                                            writeRObjects,
                                            plotExternalCostTotalCosts,
-                                           plotExpectedUtilityTotalCosts,
+                                           plotExpectedUtilityDecCostTotalUtil,
                                            plotOnlyExternalCost,
                                            plotOnlyExpectedUtility,
                                            plotNumberOfRounds,
@@ -95,7 +95,7 @@ aKMajorityRuleSimulation <-       function(folderName,
   
   
   # STEP 2: Create output directory:
-  if( writeCSV | writeRObjects| plotExternalCostTotalCosts==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
+  if( writeCSV | writeRObjects| plotExternalCostTotalCosts==TRUE | plotExpectedUtilityDecCostTotalUtil==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityDecCostTotalUtil==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
   sysTimeStamp <- format(Sys.time(),"on_%m_%d_%Y_at_%H_%M_%S")
   dir.create(paste("output_",folderName,"_",sysTimeStamp, sep=""), showWarnings=FALSE)
   cat("The simulation output  will be stored in \n  ",outputTo, paste("/output_",folderName,"_",sysTimeStamp,"\n\n", sep=""), sep = "")
@@ -103,7 +103,7 @@ aKMajorityRuleSimulation <-       function(folderName,
   
   # STEP 3: Plots
 ## Add other plots to or statement  
-  if(plotExternalCostTotalCosts==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
+  if(plotExternalCostTotalCosts==TRUE | plotExpectedUtilityDecCostTotalUtil==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityDecCostTotalUtil==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
     dir.create(paste("output_",folderName,"_",sysTimeStamp,"/plots",sep=""), showWarnings=FALSE)
     cat("CREATED 'plots' folder.\n\n", sep = "") 
   }#ends the if any plots IF
@@ -215,43 +215,43 @@ aKMajorityRuleSimulation <-       function(folderName,
   
   
   
-  if(plotExpectedUtilityTotalCosts==TRUE){
-    # Plots the Expected Utility and Total Cost measures for mean group.
-    pdf(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalCostMeanGroupWithExpectedUtility.pdf",sep=""), width = 7, height = 6.12)
-    plotExpectedUtilityTotalCost(iterationsOutput,plotMeanEU=TRUE,plotBestEU=FALSE,plotWorstEU=FALSE)
+  if(plotExpectedUtilityDecCostTotalUtil==TRUE){
+    # Plots the Expected Utility, Decision Costs and Total Utility measures for mean group.
+    pdf(paste("output_",folderName,"_",sysTimeStamp,"/plots/expectedUtilityDecCostTotalUtilMeanGroup.pdf",sep=""), width = 7, height = 6.12)
+    plotExpectedUtilityDecCostTotalUtil(iterationsOutput,plotMeanEU=TRUE,plotBestEU=FALSE,plotWorstEU=FALSE)
     dev.off()
     
-    png(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalCostMeanGroupWithExpectedUtility.png",sep=""), width = 700, height = 612)
-    plotExpectedUtilityTotalCost(iterationsOutput,plotMeanEU=TRUE,plotBestEU=FALSE,plotWorstEU=FALSE)
+    png(paste("output_",folderName,"_",sysTimeStamp,"/plots/expectedUtilityDecCostTotalUtilMeanGroup.png",sep=""), width = 700, height = 612)
+    plotExpectedUtilityDecCostTotalUtil(iterationsOutput,plotMeanEU=TRUE,plotBestEU=FALSE,plotWorstEU=FALSE)
     dev.off()
     
-    cat("SAVED 'totalCostMeanGroupWithExpectedUtility.pdf' and 'totalCostMeanGroupWithExpectedUtility.png' to the 'plots' folder.\n\n", sep = "")
+    cat("SAVED 'expectedUtilityDecCostTotalUtilMeanGroup.pdf' and 'expectedUtilityDecCostTotalUtilMeanGroup.png' to the 'plots' folder.\n\n", sep = "")
     
     
-    # Plots the Expected Utility and Total Cost measures for best group.
-    pdf(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalCostBestGroupWithExpectedUtility.pdf",sep=""), width = 7, height = 6.12)
-    plotExpectedUtilityTotalCost(iterationsOutput,plotMeanEU=FALSE,plotBestEU=TRUE,plotWorstEU=FALSE)
+    # Plots the Expected Utility, Decision Costs and Total Utility measures for best group.
+    pdf(paste("output_",folderName,"_",sysTimeStamp,"/plots/expectedUtilityDecCostTotalUtilMeanGroupBestGroup.pdf",sep=""), width = 7, height = 6.12)
+    plotExpectedUtilityDecCostTotalUtil(iterationsOutput,plotMeanEU=FALSE,plotBestEU=TRUE,plotWorstEU=FALSE)
     dev.off()
     
-    png(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalCostBestGroupWithExpectedUtility.png",sep=""), width = 700, height = 612)
-    plotExpectedUtilityTotalCost(iterationsOutput,plotMeanEU=FALSE,plotBestEU=TRUE,plotWorstEU=FALSE)
+    png(paste("output_",folderName,"_",sysTimeStamp,"/plots/expectedUtilityDecCostTotalUtilMeanGroupBestGroup.png",sep=""), width = 700, height = 612)
+    plotExpectedUtilityDecCostTotalUtil(iterationsOutput,plotMeanEU=FALSE,plotBestEU=TRUE,plotWorstEU=FALSE)
     dev.off()
     
-    cat("SAVED 'totalCostBestGroupWithExpectedUtility.pdf' and 'totalCostBestGroupWithExpectedUtility.png' to the 'plots' folder.\n\n", sep = "")
+    cat("SAVED 'expectedUtilityDecCostTotalUtilMeanGroupBestGroup.pdf' and 'expectedUtilityDecCostTotalUtilMeanGroupBestGroup.png' to the 'plots' folder.\n\n", sep = "")
     
     
     
-    # Plots the Expected Utility and Total Cost measures for worst groups.
-    pdf(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalCostWorstGroupWithExpectedUtility.pdf",sep=""), width = 7, height = 6.12)
-    plotExpectedUtilityTotalCost(iterationsOutput,plotMeanEU=FALSE,plotBestEU=FALSE,plotWorstEU=TRUE)
+    # Plots the Expected Utility, Decision Costs and Total Utility measures for worst groups.
+    pdf(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalUtilWorstGroupWithExpectedUtility.pdf",sep=""), width = 7, height = 6.12)
+    plotExpectedUtilityDecCostTotalUtil(iterationsOutput,plotMeanEU=FALSE,plotBestEU=FALSE,plotWorstEU=TRUE)
     dev.off()
     
-    png(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalCostWorstGroupWithExpectedUtility.png",sep=""), width = 700, height = 612)
-    plotExpectedUtilityTotalCost(iterationsOutput,plotMeanEU=FALSE,plotBestEU=FALSE,plotWorstEU=TRUE)
+    png(paste("output_",folderName,"_",sysTimeStamp,"/plots/totalUtilWorstGroupWithExpectedUtility.png",sep=""), width = 700, height = 612)
+    plotExpectedUtilityDecCostTotalUtil(iterationsOutput,plotMeanEU=FALSE,plotBestEU=FALSE,plotWorstEU=TRUE)
     dev.off()
     
-    cat("SAVED 'totalCostWorstGroupWithExpectedUtility.pdf' and 'totalCostWorstGroupWithExpectedUtility.png' to the 'plots' folder.\n\n", sep = "")
-  } #Ends if plotExpectedUtilityTotalCosts==TRUE
+    cat("SAVED 'totalUtilWorstGroupWithExpectedUtility.pdf' and 'totalUtilWorstGroupWithExpectedUtility.png' to the 'plots' folder.\n\n", sep = "")
+  } #Ends if plotExpectedUtilityDecCostTotalUtil==TRUE
   
   
   
@@ -342,7 +342,7 @@ aKMajorityRuleSimulation <-       function(folderName,
 
 
 ## Only write out the info if something else was stored or plotted
-if( writeCSV | writeRObjects| plotExternalCostTotalCosts==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityTotalCosts==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
+if( writeCSV | writeRObjects| plotExternalCostTotalCosts==TRUE | plotExpectedUtilityDecCostTotalUtil==TRUE | plotNumberOfRounds==TRUE | plotOnlyExternalCost==TRUE | plotExpectedUtilityDecCostTotalUtil==TRUE | plotPareto==TRUE| plotOnlyExpectedUtility==TRUE){
   sink(paste("output_",folderName,"_",sysTimeStamp,"/",nrow(iterationsOutput$allGroups[[1]]),"G_",iterationsOutput$theInputParameters$utilityDistribution[1],"Util_",iterationsOutput$theInputParameters$errorDistribution[1],"Error_Info.txt",sep=""))
   cat("This file is: ",nrow(iterationsOutput$allGroups[[1]]),"G_",iterationsOutput$theInputParameters$utilityDistribution[1],"Util_",iterationsOutput$theInputParameters$errorDistribution[1],"Error_Info.txt\n\n",sep="")
   cat("This file contains basic information about the simulation files contained in this folder.\n\n")
@@ -385,7 +385,7 @@ if (plotExternalCostTotalCosts == TRUE | plotOnlyExternalCost == TRUE){
   cat("Worst Total Cost w/ External Cost by kMaj: ",iterationsOutput$externalCost$meanOfworstOffGroupsMeanExternalCostEachIteration+(iterationsOutput$rounds$meanNumberOfProposalsConsideredEachIteration * iterationsOutput$theInputParameters$perProposalDecisionCost),"\n\n")
   }
 
-if (plotExpectedUtilityTotalCosts == TRUE | plotOnlyExpectedUtility == TRUE){
+if (plotExpectedUtilityDecCostTotalUtil == TRUE | plotOnlyExpectedUtility == TRUE){
   cat("Mean Expected Utility by kMaj: ",iterationsOutput$expectedUtility$meanOfMeanVotersExpectedUtilityEachIteration,"\n\n")
   cat("Best Expected Utility by kMaj: ",iterationsOutput$expectedUtility$meanOfbestOffGroupsMeanExpectedUtilityEachIteration,"\n\n")
   cat("Worst Expected Utility by kMaj: ",iterationsOutput$expectedUtility$meanOfworstOffGroupsMeanExpectedUtilityEachIteration,"\n\n")
@@ -443,7 +443,7 @@ sink()
       cat("Worst Total Cost w/ External Cost by kMaj: ",iterationsOutput$externalCost$meanOfworstOffGroupsMeanExternalCostEachIteration+(iterationsOutput$rounds$meanNumberOfProposalsConsideredEachIteration * iterationsOutput$theInputParameters$perProposalDecisionCost),"\n\n")
     }
     
-    if (plotExpectedUtilityTotalCosts == TRUE | plotOnlyExpectedUtility == TRUE){
+    if (plotExpectedUtilityDecCostTotalUtil == TRUE | plotOnlyExpectedUtility == TRUE){
       cat("Mean Expected Utility by kMaj: ",iterationsOutput$expectedUtility$meanOfMeanVotersExpectedUtilityEachIteration,"\n\n")
       cat("Best Expected Utility by kMaj: ",iterationsOutput$expectedUtility$meanOfbestOffGroupsMeanExpectedUtilityEachIteration,"\n\n")
       cat("Worst Expected Utility by kMaj: ",iterationsOutput$expectedUtility$meanOfworstOffGroupsMeanExpectedUtilityEachIteration,"\n\n")

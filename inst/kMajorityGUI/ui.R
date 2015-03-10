@@ -7,12 +7,13 @@ shinyUI(fluidPage(
   fluidRow(
     column(10,
            p("This is the GUI interface for replicating the simulations in the paper",
-             em("An expected utility analysis of the optimal k-majority rule"),
-          "is a new package from RStudio that makes it to build interactive web applications with R."),
+             em("An expected utility analysis of the optimal k-majority rule")),
           h3("Replication Code:"),
            p("You can view and download the source code, as well as find instructions for installing the R package developed for the paper here:",
              a("GitHub for kMajorityRule.", 
-               href = "https://github.com/codeForReviewer/kMajorityRule"))
+               href = "https://github.com/codeForReviewer/kMajorityRule")),
+          h4("A Note on the Number of Groups:"),
+          p("This GUI allows a user to run simulations with 1,2 or 3 groups. The kMajorityRule R Package allows a user to run simulations with more than 3 groups.")
            )
   ),
     
@@ -76,7 +77,8 @@ shinyUI(fluidPage(
              numericInput("group3EiMean", "Error Mean", 0),
              numericInput("group3EiStd", "Error Std. Dev.", .3),
              textInput("group3Alpha", "Change in utility mean when proposal fails.", .1)
-      ))),     
+      ))),
+    
         
     column(3,
       wellPanel(

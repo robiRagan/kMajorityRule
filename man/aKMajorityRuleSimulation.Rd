@@ -9,7 +9,7 @@ aKMajorityRuleSimulation(folderName, numberOfIterations, groupSize,
   errorDistributionParameters, groupPostFailingProposalMeanUiIncrease,
   maximumNumberOfProposalsInASeries, perProposalDecisionCost, silentSeries,
   silentIterations, outputTo, writeCSV, writeRObjects,
-  plotExternalCostTotalCosts, plotExpectedUtilityTotalCosts,
+  plotExternalCostTotalCosts, plotExpectedUtilityDecCostTotalUtil,
   plotOnlyExternalCost, plotOnlyExpectedUtility, plotNumberOfRounds, plotPareto,
   printOutputToScreen)
 }
@@ -20,7 +20,8 @@ will be output_folderName_on_08_11_2013_at_17_30_25}
 \item{numberOfIterations}{The number of iterations the model is run.}
 
 \item{groupSize}{This is a vector that has a length of numberOfGroups. Each
-element indicates the number of voters in each group.}
+element indicates the number of voters in each group. While the examples in
+the paper use 3 groups, the package can handle any number of groups.}
 
 \item{utilityDistribution}{The distribution the utility ui values will be
 drawn from. This can currently only be "normal".}
@@ -84,8 +85,8 @@ decision cost, external cost and total cost for the worst groups. The other
 plots the same three costs, but for the mean groups. This is the main
 output presented in the paper.}
 
-\item{plotExpectedUtilityTotalCosts}{If TRUE creates two graphs. One has the
-decision cost, expected utility and total cost for the worst groups. The other
+\item{plotExpectedUtilityDecCostTotalUtil}{If TRUE creates two graphs. One has the
+decision cost, Expected Utility, Decision Costs and Total Utility for the worst groups. The other
 plots the same three measures, but for the mean groups. This is the main
 output presented in the paper.}
 
@@ -131,7 +132,7 @@ aKMajorityRuleSimulation(folderName="SimulationA",
                                                  writeCSV=FALSE,
                                                  writeRObjects=FALSE,
                                                  plotExternalCostTotalCosts=FALSE,
-                                                 plotExpectedUtilityTotalCosts=FALSE,
+                                                 plotExpectedUtilityDecCostTotalUtil=FALSE,
                                                  plotOnlyExternalCost=FALSE,
                                                  plotOnlyExpectedUtility=FALSE,
                                                  plotNumberOfRounds=FALSE,
