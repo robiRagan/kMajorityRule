@@ -13,7 +13,7 @@ http://cran.wustl.edu
 
 ## 1. Download the source code.
 
-On the page https://github.com/codeForReviewer/kMajorityRule in the bottom corner you will see a button called "Download Zip" this will allow you to download the source code for the R Package. 
+On the page https://github.com/robiRagan/kMajorityRule in the bottom corner you will see a button called "Download Zip" this will allow you to download the source code for the R Package. 
 
 Once you have downloaded and unzipped the file you will find an R file called evaluateViaSource.R. This is a heavily commented file that will allow you to run the commands line by line necessary to replicate the figures in the paper.
 
