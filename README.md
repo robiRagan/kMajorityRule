@@ -23,7 +23,12 @@ This is the simplest way to review the code and replicate the figures in the pap
 * Install R and run it.
 * At the console prompt ">" type: install.packages("devtools")
 * Now load devtools by typing at the console prompt ">": library(devtools)
-* Now you can install the kMajorityCost package with: install.github("kMajorityRule")
+* Now you can install the kMajorityCost package with: install_github("robiRagan/kMajorityRule")
+* Load the package with: library(kMajorityRule)
+* Then open the main help file with: ?kMajorityRule
+
+The main help file contains links to all the functions and their help files as well as instructions on how to run demos that replicate all the figures in the paper. 
+
 
 ## 3. View the Web Based GUI
 
