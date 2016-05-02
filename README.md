@@ -1,5 +1,3 @@
-*An expected utility calculator for non-experts: https://robiraganshinyapps.shinyapps.io/kMajorityGUI/*
-
 # KMajorityRule
 ## Replication Code for: An expected utility analysis of the optimal k-majority rule.
 
