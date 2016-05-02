@@ -1,8 +1,8 @@
 # KMajorityRule
 ## Replication Code for: An expected utility analysis of the optimal k-majority rule.
----
-NOTE An interactive Web GUI can be found here: https://expectedutilityanalysis.shinyapps.io/kMajorityGUI/
----
+
+*NOTE An interactive Web GUI can be found here: https://expectedutilityanalysis.shinyapps.io/kMajorityGUI/*
+
 This is the repository for the replication code for the paper "An expected utility analysis of the optimal k-majority rule." The code is packaged as a Package for R. It also contains information about accessing the web GUI. 
 
 There are *three ways that you can review the simulations* associated with the paper. The first two assume you have R installed. R is a free software program and you can aquire the basic version at one of these mirrors:
