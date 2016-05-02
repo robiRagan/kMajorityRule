@@ -36,4 +36,4 @@ The main help file contains links to all the functions and their help files as w
 
 A web based interface for running the simulations from the paper (and others). It can be quite slow, compared to running the simulations with the R Package on your own computer.
 
-https://expectedutilityanalysis.shinyapps.io/kMajorityGUI/
+https://robiraganshinyapps.shinyapps.io/kMajorityGUI/
